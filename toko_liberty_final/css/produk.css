@@ -1,0 +1,208 @@
+/* ========================
+   1. GLOBAL STYLES (global.css) 
+   ======================== */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #555;
+    padding: 10px 15px;
+    display: block;
+    font-weight: bold;
+}
+
+.navbar ul li a:hover,
+.navbar ul li a.active {
+    color: #007bff; /* Warna biru untuk active/hover */
+}
+
+/* Buttons (btn) */
+.btn {
+    padding: 8px 15px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    transition: background-color 0.3s;
+    background-color: #007bff;
+    color: white;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+.btn.outline {
+    background-color: transparent;
+    border: 1px solid #ccc;
+    color: #555;
+}
+
+.btn.outline:hover {
+    background-color: #eee;
+    color: #333;
+}
+
+.btn.small {
+    font-size: 12px;
+    padding: 6px 10px;
+}
+
+/* ========================
+   2. PAGE-SPECIFIC STYLES (pages.css) 
+   ======================== */
+
+/* Judul Halaman */
+.page-title {
+    background-color: #e9ecef;
+    padding: 20px 5%;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.page-title h2 {
+    margin: 0;
+    font-size: 28px;
+    color: #343a40;
+}
+
+/* Filter Section */
+.filters {
+    padding: 15px 5%;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+#filter-form {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+#filter-form input[type="text"],
+#filter-form select {
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#filter-form input[type="text"] {
+    flex-grow: 1; /* Agar input pencarian lebih lebar */
+    max-width: 300px;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    /* Membuat grid responsif, minimal 250px per kolom */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 0 5%;
+    margin-bottom: 40px;
+}
+
+/* Product Card */
+.product-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+    max-height: 200px;
+    object-fit: contain; /* Memastikan gambar terlihat baik tanpa terpotong */
+    margin-bottom: 10px;
+}
+
+.product-card h3 {
+    font-size: 18px;
+    margin: 10px 0 5px 0;
+    color: #007bff;
+}
+
+.product-card .price {
+    font-size: 16px;
+    font-weight: bold;
+    color: #dc3545; /* Warna merah untuk harga */
+    margin-bottom: 10px;
+}
+
+.product-card .desc {
+    font-size: 13px;
+    color: #6c757d;
+    margin-bottom: 15px;
+    flex-grow: 1; /* Memastikan deskripsi menggunakan ruang yang tersedia */
+}
+
+.product-card .actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: auto; /* Mendorong tombol ke bawah */
+}
+
+/* Responsiveness for smaller screens */
+@media (max-width: 600px) {
+    #filter-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    #filter-form input[type="text"],
+    #filter-form select,
+    #filter-form .btn {
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .products-grid {
+        grid-template-columns: 1fr; /* Satu kolom di layar kecil */
+        padding: 0 20px;
+    }
+    
+    .navbar {
+        flex-direction: column;
+    }
+}

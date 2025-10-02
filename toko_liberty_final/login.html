@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Liberty Shoes</title>
+    <!-- Memuat Tailwind CSS untuk styling modern dan responsif -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tautan ke CSS Global untuk pengaturan font dan background -->
+    <link rel="stylesheet" href="css/global.css">
+    
+    <style>
+        /* CSS Kustom untuk layout halaman login */
+        
+        /* Fallback untuk Navbar */
+        .navbar {
+            background-color: #ffffff;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+            min-height: 4rem;
+        }
+
+        /* Memusatkan form di tengah layar */
+        .login-page-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: calc(100vh - 4rem); /* 100vh dikurangi tinggi navbar */
+            padding: 20px;
+            background-color: #f4f7fa; /* Warna latar belakang ringan */
+        }
+
+        /* Styling tambahan untuk input di form */
+        .form-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db; /* gray-300 */
+            border-radius: 8px; /* rounded-lg */
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        .form-input:focus {
+            border-color: #3b82f6; /* blue-500 */
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+
+<!-- HEADER / NAVBAR (Konsisten dengan halaman lain) -->
+<header class="navbar bg-white shadow-md sticky top-0 z-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+        <img src="https://placehold.co/80x40/007bff/white?text=LOGO" class="logo rounded" width="80" alt="Logo Perusahaan">
+        <ul class="flex space-x-6 ml-auto"> 
+            <li><a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
+            <li><a href="produk.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Produk</a></li>
+            <li><a href="about.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Tentang Kami</a></li>
+            <li><a href="kontak.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
+            <li><a href="login.html" class="text-blue-600 border-b-2 border-blue-600 font-bold">Login</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- KONTEN LOGIN -->
+<div class="login-page-container">
+    <div class="login-container w-full max-w-md bg-white p-8 md:p-10 rounded-xl shadow-2xl border border-gray-100">
+        <div class="text-center mb-6">
+            <h2 class="text-3xl font-extrabold text-gray-900">Masuk ke Akun Anda</h2>
+            <p class="mt-2 text-sm text-gray-600">Selamat datang kembali! Silakan masukkan detail Anda.</p>
+        </div>
+        
+        <form id="loginForm" class="space-y-6">
+            <div>
+                <label for="username" class="sr-only">Username/Email</label>
+                <input type="text" id="username" name="username" required class="form-input" placeholder="Username atau Alamat Email">
+            </div>
+            
+            <div>
+                <label for="password" class="sr-only">Password</label>
+                <input type="password" id="password" name="password" required class="form-input" placeholder="Kata Sandi">
+            </div>
+            
+            <div class="flex justify-between items-center text-sm">
+                <div class="flex items-center">
+                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                    <label for="remember-me" class="ml-2 block text-gray-900">Ingat Saya</label>
+                </div>
+                <a href="#" class="text-blue-600 hover:text-blue-500">Lupa Kata Sandi?</a>
+            </div>
+            
+            <div id="loginMessage" class="text-sm text-center text-red-500 font-medium"></div>
+
+            <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 shadow-md">
+                Masuk
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm">
+            <p class="text-gray-600">Belum punya akun? 
+                <a href="register.html" class="text-blue-600 hover:text-blue-500 font-medium">Daftar Sekarang</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
