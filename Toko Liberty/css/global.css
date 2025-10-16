@@ -1,0 +1,135 @@
+/* ==================================== */
+/* GLOBAL RESET & BASE STYLES */
+/* ==================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+    min-height: 100vh;
+    line-height: 1.5;
+    background-color: #f3f4f6; /* gray-100 */
+}
+main {
+    max-width: 1280px; /* max-w-7xl */
+    margin: 0 auto;
+    padding: 2rem 1rem; /* py-8 px-4 sm:px-6 lg:px-8 */
+}
+a {
+    text-decoration: none;
+    transition: color 0.15s ease-in-out;
+}
+.font-extrabold { font-weight: 800; }
+.font-bold { font-weight: 700; }
+.font-semibold { font-weight: 600; }
+.font-medium { font-weight: 500; }
+.text-lg { font-size: 1.125rem; line-height: 1.75rem; }
+.text-xl { font-size: 1.25rem; line-height: 1.75rem; }
+.text-2xl { font-size: 1.5rem; line-height: 2rem; }
+.text-3xl { font-size: 1.875rem; line-height: 2.25rem; }
+.text-5xl { font-size: 3rem; line-height: 1; }
+
+/* ==================================== */
+/* HEADER / NAVBAR STYLING */
+/* ==================================== */
+.navbar {
+    background-color: white;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.navbar > div {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 1rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.navbar .logo {
+    border-radius: 0.25rem;
+    width: 80px;
+}
+.navbar ul {
+    display: flex;
+    list-style: none;
+    margin-left: auto;
+    gap: 1.5rem; /* space-x-6 */
+}
+.navbar a {
+    color: #4b5563; /* text-gray-600 */
+    padding: 0.5rem 0;
+}
+.navbar a:hover {
+    color: #2563eb; /* hover:text-blue-600 */
+}
+.navbar .active-link {
+    color: #2563eb; /* text-blue-600 */
+    border-bottom: 2px solid #2563eb;
+    font-weight: 700;
+}
+
+/* ==================================== */
+/* PAGE TITLE SECTION STYLING */
+/* ==================================== */
+.page-title {
+    margin-bottom: 2rem;
+    background-color: #eff6ff; /* blue-50 */
+    padding: 1.5rem;
+    border-radius: 0.75rem; /* rounded-xl */
+    text-align: center;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-md */
+}
+.page-title h2 {
+    color: #1e40af; /* text-blue-800 */
+    font-weight: 800;
+}
+.page-title p {
+    color: #4b5563; /* text-gray-600 */
+    margin-top: 0.5rem;
+}
+
+/* ==================================== */
+/* GRID LAYOUT UTILITY */
+/* ==================================== */
+.grid {
+    display: grid;
+    gap: 2rem; /* gap-8 */
+}
+.grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+}
+/* Grid responsif untuk produk, kartu, dll. */
+@media (min-width: 640px) { /* sm */
+    .sm-grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+@media (min-width: 768px) { /* md */
+    .md-grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .md-grid-cols-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .md-grid-cols-12 {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+    }
+    .md-col-span-7 {
+        grid-column: span 7 / span 7;
+    }
+    .md-col-span-5 {
+        grid-column: span 5 / span 5;
+    }
+}
+@media (min-width: 1024px) { /* lg */
+    .lg-grid-cols-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .lg-grid-cols-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}

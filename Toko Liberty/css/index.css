@@ -1,0 +1,93 @@
+/* Menggunakan global.css untuk grid dan base styles */
+
+/* ==================================== */
+/* HOMEPAGE BANNER STYLING (INDEX.html) */
+/* ==================================== */
+.banner {
+    position: relative;
+    height: 60vh; 
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: white;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.banner-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
+
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); 
+    z-index: 2;
+}
+
+.banner-content {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    max-width: 900px;
+}
+.banner-content h1 {
+    font-size: 3rem; /* text-5xl */
+    font-weight: 800;
+    margin-bottom: 0.75rem; /* mb-3 */
+    letter-spacing: -0.05em; /* tracking-tight */
+}
+.banner-content p {
+    font-size: 1.25rem; /* text-xl */
+    font-weight: 300; /* font-light */
+    opacity: 0.9;
+}
+.banner-content a {
+    margin-top: 2rem; /* mt-8 */
+    padding: 0.75rem 1.5rem; /* px-6 py-3 */
+    background-color: white;
+    color: #2563eb; /* text-blue-600 */
+    font-weight: 600;
+    border-radius: 9999px; /* rounded-full */
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); /* shadow-xl */
+    display: inline-block;
+    transition: all 0.3s;
+}
+.banner-content a:hover {
+    background-color: #f3f4f6; /* hover:bg-gray-100 */
+    transform: scale(1.05);
+}
+
+/* Feature Cards */
+.feature-card {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s;
+}
+.feature-card:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+.feature-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #1d4ed8; /* text-blue-700 */
+    margin-bottom: 0.5rem;
+}
+.feature-card p {
+    color: #4b5563; /* text-gray-600 */
+    font-size: 0.875rem; /* text-sm */
+}
