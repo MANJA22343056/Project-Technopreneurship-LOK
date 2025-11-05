@@ -1,74 +1,101 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login | Liberty Shoes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-    </head>
+</head>
+
 <body class="min-h-screen flex flex-col">
 
-<header class="navbar bg-white shadow-md sticky top-0 z-10 flex-shrink-0">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-        <img src="assets/logo.png" class="logo rounded" width="80" alt="Logo Perusahaan">
-        <ul class="flex space-x-6 ml-auto"> 
-            <li><a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
-            <li><a href="produk.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Produk</a></li>
-            <li><a href="about.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Tentang Kami</a></li>
-            <li><a href="kontak.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
-            <li><a href="login.html" class="text-blue-600 border-b-2 border-blue-600 font-bold">Login</a></li>
-        </ul>
-    </div>
-</header>
-
-<div class="flex-grow flex items-center justify-center p-4">
-    <div class="login-container w-full max-w-lg bg-white p-8 md:p-12 rounded-xl shadow-2xl border border-gray-100 transform hover:shadow-blue-300 transition duration-500">
-        
-        <div class="text-center mb-8">
-            <img src="assets/logo.png" class="mx-auto h-20 w-auto mb-4" alt="Liberty Shoes Logo">
-            
-            <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">Masuk ke Akun Anda</h2>
-            <p class="mt-2 text-md text-gray-600">Dapatkan akses ke pesanan Anda dan diskon eksklusif.</p>
+    <header class="navbar bg-white shadow-md sticky top-0 z-10 flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <img src="assets/logo.png" class="logo rounded" width="80" alt="Logo Perusahaan">
+            <ul class="flex space-x-6 ml-auto" id="nav-links">
+                <li><a href="index.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
+                <li><a href="produk.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Produk</a></li>
+                <li><a href="about.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Tentang Kami</a>
+                </li>
+                <li><a href="kontak.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
+                <li id="login-nav-item"><a href="login.html" class="text-blue-600 border-b-2 border-blue-600 font-bold">Login</a></li>
+            </ul>
         </div>
-        
-        <form id="loginForm" class="space-y-6">
-            <div>
-                <label for="username" class="sr-only">Username/Email</label>
-                <input type="text" id="username" name="username" required 
-                       class="form-input text-lg" 
-                       placeholder="Username atau Alamat Email">
+    </header>
+
+    <div class="flex-grow flex items-center justify-center p-4">
+        <div
+            class="login-container w-full max-w-lg bg-white p-8 md:p-12 rounded-xl shadow-2xl border border-gray-100">
+
+            <div class="text-center mb-8">
+                <img src="assets/logo.png" class="mx-auto h-20 w-auto mb-4" alt="Liberty Shoes Logo">
+                <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">Masuk ke Akun Anda</h2>
+                <p class="mt-2 text-md text-gray-600">Dapatkan akses ke pesanan Anda dan diskon eksklusif.</p>
             </div>
-            
-            <div>
-                <label for="password" class="sr-only">Password</label>
-                <input type="password" id="password" name="password" required 
-                       class="form-input text-lg" 
-                       placeholder="Kata Sandi">
-            </div>
-            
-            <div class="flex justify-between items-center text-sm">
-                <div class="flex items-center">
-                    <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
-                    <label for="remember-me" class="ml-2 block text-gray-900">Ingat Saya</label>
+
+            <form id="loginForm" class="space-y-6">
+                <div>
+                    <label for="username" class="sr-only">Username/Email</label>
+                    <input type="text" id="username" name="username" required class="form-input text-lg"
+                        placeholder="Username atau Alamat Email">
                 </div>
-                <a href="#" class="text-blue-600 hover:text-blue-500 font-medium transition duration-150">Lupa Kata Sandi?</a>
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" id="password" name="password" required class="form-input text-lg"
+                        placeholder="Kata Sandi">
+                </div>
+                <div class="flex justify-between items-center text-sm">
+                    <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox"
+                            class="h-4 w-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+                        <label for="remember-me" class="ml-2 block text-gray-900">Ingat Saya</label>
+                    </div>
+                    <a href="#" class="text-blue-600 hover:text-blue-500 font-medium transition duration-150">Lupa Kata
+                        Sandi?</a>
+                </div>
+                <div id="loginMessage" class="text-sm text-center text-red-500 font-medium"></div>
+                <button type="submit"
+                    class="w-full bg-blue-600 text-white py-3.5 rounded-lg font-bold text-lg hover:bg-blue-700 transition duration-200 shadow-xl">
+                    Masuk
+                </button>
+            </form>
+
+            <div class="mt-8 text-center text-md border-t pt-4">
+                <p class="text-gray-600">Belum punya akun?
+                    <a href="register.html"
+                        class="text-blue-600 hover:text-blue-700 font-bold transition duration-150">Daftar Sekarang</a>
+                </p>
             </div>
-            
-            <div id="loginMessage" class="text-sm text-center text-red-500 font-medium"></div>
-
-            <button type="submit" class="w-full bg-blue-600 text-white py-3.5 rounded-lg font-bold text-lg hover:bg-blue-700 transition duration-200 shadow-xl transform hover:scale-[1.01]">
-                Masuk
-            </button>
-        </form>
-
-        <div class="mt-8 text-center text-md border-t pt-4">
-            <p class="text-gray-600">Belum punya akun? 
-                <a href="register.html" class="text-blue-600 hover:text-blue-700 font-bold transition duration-150">Daftar Sekarang</a>
-            </p>
         </div>
     </div>
-</div>
 
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script>
+      // Config Anda
+      const firebaseConfig = {
+        apiKey: "AIzaSyC-Yy3nBhGrND6ZmgcMZ_sjE-aKN0lkL8o",
+        authDomain: "tokolibertyproject.firebaseapp.com",
+        projectId: "tokolibertyproject",
+        storageBucket: "tokolibertyproject.firebasestorage.app",
+        messagingSenderId: "300142124191",
+        appId: "1:300142124191:web:7deb307397e945070bd6aa",
+        measurementId: "G-B41D2CS5GT"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      console.log("Firebase berhasil terhubung!");
+    </script>
+    
+    <script src="login.js"></script>
+    <script src="main.js"></script>
 </body>
 </html>

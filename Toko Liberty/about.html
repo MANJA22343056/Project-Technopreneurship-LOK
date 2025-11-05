@@ -1,80 +1,105 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tentang Kami | Liberty Shoes</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css">
-</head>
+    </head>
+
 <body class="min-h-screen">
 
-<header class="navbar bg-white shadow-md sticky top-0 z-10">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
-        <img src="assets/logo.png" class="logo rounded" width="80" alt="Logo Perusahaan">
-        <ul class="flex space-x-6 ml-auto"> 
-            <li><a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
-            <li><a href="produk.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Produk</a></li>
-            <li><a href="about.html" class="text-blue-600 border-b-2 border-blue-600 font-bold">Tentang Kami</a></li>
-            <li><a href="kontak.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
-            <li><a href="login.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Login</a></li>
-        </ul>
-    </div>
-</header>
-
-<main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-
-    <section class="page-title mb-8 bg-blue-50 p-6 rounded-xl text-center shadow-md">
-        <h2 class="text-3xl font-extrabold text-blue-800">Tentang Liberty Shoes</h2>
-        <p class="text-gray-600 mt-2">Kisah kami dalam menyediakan sepatu berkualitas dan stylish sejak 2025.</p>
-    </section>
-
-    <section class="content bg-white p-8 rounded-xl shadow-lg mb-10">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 border-b pb-2">Filosofi Kami</h1>
-        <p class="text-gray-600 leading-relaxed">
-            Liberty Shoes didirikan dengan satu tujuan sederhana: menyediakan alas kaki berkualitas tinggi yang tidak hanya nyaman namun juga mengikuti tren mode terkini. Sejak tahun 2010, kami telah berkomitmen untuk menggunakan bahan terbaik dan proses produksi yang etis untuk setiap pasang sepatu yang kami tawarkan. Kami percaya bahwa sepatu yang baik adalah fondasi untuk hari yang baik.
-        </p>
-
-        <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div class="p-6 bg-green-50 rounded-lg border-l-4 border-green-500 shadow-sm">
-                <h3 class="text-xl font-semibold text-green-700 mb-2">Visi Kami</h3>
-                <p class="text-gray-700">Menjadi merek alas kaki terkemuka di Indonesia yang diakui secara global karena kualitas, inovasi, dan komitmen terhadap kenyamanan pelanggan.</p>
-            </div>
-
-            <div class="p-6 bg-yellow-50 rounded-lg border-l-4 border-yellow-500 shadow-sm">
-                <h3 class="text-xl font-semibold text-yellow-700 mb-2">Misi Kami</h3>
-                <ul class="list-disc list-inside text-gray-700 space-y-1">
-                    <li>Menawarkan beragam produk untuk berbagai gaya hidup.</li>
-                    <li>Mempertahankan standar kualitas bahan dan produksi tertinggi.</li>
-                    <li>Menciptakan pengalaman belanja yang mudah dan menyenangkan.</li>
-                    <li>Mendorong praktik bisnis yang berkelanjutan dan etis.</li>
-                </ul>
-            </div>
+    <header class="navbar bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
+            <img src="assets/logo.png" class="logo rounded" width="80" alt="Logo Perusahaan">
+            <ul class="flex space-x-6 ml-auto" id="nav-links">
+                <li><a href="index.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
+                <li><a href="produk.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Produk</a></li>
+                <li><a href="about.html" class="text-blue-600 border-b-2 border-blue-600 font-bold">Tentang Kami</a>
+                </li>
+                <li><a href="kontak.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
+                <li id="login-nav-item"><a href="login.html"
+                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Login</a></li>
+            </ul>
         </div>
-    </section>
-    
-    <section class="mb-8">
-        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Apa Kata Pelanggan Kami?</h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <div class="testimony-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                <p class="italic text-gray-700 mb-3">"Sepatu Boots ToughSole-nya benar-benar tangguh! Sudah saya pakai berkali-kali untuk hiking dan masih seperti baru. Kualitas top!"</p>
-                <p class="font-semibold text-sm text-blue-600">— Manja</p>
-            </div>
-            
-            <div class="testimony-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                <p class="italic text-gray-700 mb-3">"Pengiriman cepat dan packaging-nya rapi. Sepatu Sport FlexFit sangat nyaman dipakai lari pagi, bantalan empuknya terasa sekali."</p>
-                <p class="font-semibold text-sm text-blue-600">— Bily</p>
-            </div>
+    </header>
 
-            <div class="testimony-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                <p class="italic text-gray-700 mb-3">"Senang sekali ada kategori Canvas High-Top. Desainnya klasik dan harganya sangat terjangkau. Pelayanan CS juga ramah."</p>
-                <p class="font-semibold text-sm text-blue-600">— Dafa</p>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section class="page-title mb-8 bg-blue-50 p-6 rounded-xl text-center shadow-md">
+            <h2 class="text-3xl font-extrabold text-blue-800">Tentang Liberty Shoes</h2>
+            <p class="text-gray-600 mt-2">Kisah kami dalam menyediakan sepatu berkualitas dan stylish sejak 2025.</p>
+        </section>
+        <section class="content bg-white p-8 rounded-xl shadow-lg mb-10">
+            <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-4 border-b pb-2">Filosofi Kami</h1>
+            <p class="text-gray-600 leading-relaxed">
+                Liberty Shoes didirikan dengan satu tujuan sederhana: menyediakan alas kaki berkualitas tinggi yang
+                tidak hanya nyaman namun juga mengikuti tren mode terkini. Sejak tahun 2010, kami telah berkomitmen
+                untuk menggunakan bahan terbaik dan proses produksi yang etis untuk setiap pasang sepatu yang kami
+                tawarkan. Kami percaya bahwa sepatu yang baik adalah fondasi untuk hari yang baik.
+            </p>
+            <div class="mt-8 grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="p-6 bg-green-50 rounded-lg border-l-4 border-green-500 shadow-sm">
+                    <h3 class="text-xl font-semibold text-green-700 mb-2">Visi Kami</h3>
+                    <p class="text-gray-700">Menjadi merek alas kaki terkemuka di Indonesia yang diakui secara global
+                        karena kualitas, inovasi, dan komitmen terhadap kenyamanan pelanggan.</p>
+                </div>
+                <div class="p-6 bg-yellow-50 rounded-lg border-l-4 border-yellow-500 shadow-sm">
+                    <h3 class="text-xl font-semibold text-yellow-700 mb-2">Misi Kami</h3>
+                    <ul class="list-disc list-inside text-gray-700 space-y-1">
+                        <li>Menawarkan beragam produk untuk berbagai gaya hidup.</li>
+                        <li>Mempertahankan standar kualitas bahan dan produksi tertinggi.</li>
+                        <li>Menciptakan pengalaman belanja yang mudah dan menyenangkan.</li>
+<li>Mendorong praktik bisnis yang berkelanjutan dan etis.</li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+        <section class="mb-8">
+            <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">Apa Kata Pelanggan Kami?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="testimony-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <p class="italic text-gray-700 mb-3">"Sepatu Boots ToughSole-nya benar-benar tangguh! Sudah saya
+                        pakai berkali-kali untuk hiking dan masih seperti baru. Kualitas top!"</p>
+                    <p class="font-semibold text-sm text-blue-600">— Manja</p>
+                </div>
+                <div class="testimony-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <p class="italic text-gray-700 mb-3">"Pengiriman cepat dan packaging-nya rapi. Sepatu Sport FlexFit
+                        sangat nyaman dipakai lari pagi, bantalan empuknya terasa sekali."</p>
+                    <p class="font-semibold text-sm text-blue-600">— Bily</p>
+                </div>
+                <div class="testimony-card bg-white p-6 rounded-xl shadow-md border border-gray-100">
+                    <p class="italic text-gray-700 mb-3">"Senang sekali ada kategori Canvas High-Top. Desainnya klasik
+                        dan harganya sangat terjangkau. Pelayanan CS juga ramah."</p>
+                    <p class="font-semibold text-sm text-blue-600">— Dafa</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-</main>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyC-Yy3nBhGrND6ZmgcMZ_sjE-aKN0lkL8o",
+        authDomain: "tokolibertyproject.firebaseapp.com",
+        projectId: "tokolibertyproject",
+        storageBucket: "tokolibertyproject.firebasestorage.app",
+        messagingSenderId: "300142124191",
+        appId: "1:300142124191:web:7deb307397e945070bd6aa",
+        measurementId: "G-B41D2CS5GT"
+      };
+      firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      console.log("Firebase berhasil terhubung!");
+    </script>
+    <script src="main.js"></script>
 
 </body>
 </html>
