@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Migrasi Data ke Firebase (GitHub Images)</title>
+    <style>
+        body { font-family: sans-serif; padding: 40px; text-align: center; }
+        #status { margin-top: 20px; white-space: pre-wrap; text-align: left; background: #f0f0f0; padding: 20px; max-height: 400px; overflow-y: auto;}
+        button { padding: 15px 30px; font-size: 18px; cursor: pointer; background: #2563eb; color: white; border: none; border-radius: 5px; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+    </style>
+</head>
+<body>
+
+    <h1>Alat Migrasi Produk (Link Gambar GitHub)</h1>
+    <p>Klik tombol di bawah ini untuk mengupload 30 produk ke Firestore dengan gambar dari GitHub.</p>
+    <button id="btnMigrate" onclick="uploadData()">Mulai Upload Data</button>
+    
+    <div id="status">Menunggu...</div>
+
+    <!-- SDK Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+
+    <script>
+        // 1. Konfigurasi Firebase Anda
+        const firebaseConfig = {
+            apiKey: "AIzaSyC-Yy3nBhGrND6ZmgcMZ_sjE-aKN0lkL8o",
+            authDomain: "tokolibertyproject.firebaseapp.com",
+            projectId: "tokolibertyproject",
+            storageBucket: "tokolibertyproject.firebasestorage.app",
+            messagingSenderId: "300142124191",
+            appId: "1:300142124191:web:7deb307397e945070bd6aa",
+            measurementId: "G-B41D2CS5GT"
+        };
+
+        // Inisialisasi
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
+
+        // Base URL untuk GitHub Raw Images
+        const baseURL = "https://raw.githubusercontent.com/MANJA22343056/Project-Technopreneurship-LOK/master/Toko%20Liberty/assets/";
+
+        // 2. Data Produk Anda (Updated with GitHub Links)
+        const products = [
+            // --- NIKE ---
+            {
+                name: "NIKE AIR MAX PLUS MEN'S SNEAKERS SHOES-BLACK",
+                price: 2389000,
+                category: "nike",
+                description: "Sepatu pria, Warna: Hitam",
+                image: baseURL + "Nike1.1.png",
+                gallery: [baseURL + "Nike1.1.png", baseURL + "Nike1.2.png", baseURL + "Nike1.3.png", baseURL + "Nike1.4.png", baseURL + "Nike1.5.png"]
+            },
+            {
+                name: "NIKE AIR MAX 97 MEN'S SNEAKERS SHOES-WHITE",
+                price: 1250000,
+                category: "nike",
+                description: "Sepatu pria, Warna: Putih",
+                image: baseURL + "Nike2.1.png",
+                gallery: [baseURL + "Nike2.1.png", baseURL + "Nike2.2.png", baseURL + "Nike2.3.png", baseURL + "Nike2.4.png", baseURL + "Nike2.5.png"]
+            },
+            {
+                name: "P-6000 MEN'S SNESKERS SHOES - LT KHAKI/PALE IVORY-THUNDER BLUE",
+                price: 1750000,
+                category: "nike",
+                description: "Sepatu pria, Warna: Kuning/Khaki",
+                image: baseURL + "Nike3.1.png",
+                gallery: [baseURL + "Nike3.1.png", baseURL + "Nike3.2.png", baseURL + "Nike3.3.png", baseURL + "Nike3.4.png", baseURL + "Nike3.5.png"]
+            },
+            {
+                name: "Nike P-6000 MEN'S SNESKERS SHOES - PHANTOM",
+                price: 1399000,
+                category: "nike",
+                description: "Sepatu pria, Warna: Putih Phantom",
+                image: baseURL + "Nike4.1.png",
+                gallery: [baseURL + "Nike4.1.png", baseURL + "Nike4.2.png", baseURL + "Nike4.3.png", baseURL + "Nike4.4.png", baseURL + "Nike4.5.png"]
+            },
+            {
+                name: "KOBE IX ELITE LOW EM PROTRO MEN'S BASKETBALL SHOES-WOLF GREY/WHITE",
+                price: 2850000,
+                category: "nike",
+                description: "Sepatu basket pria, Warna: Abu-abu",
+                image: baseURL + "Nike5.1.png",
+                gallery: [baseURL + "Nike5.1.png", baseURL + "Nike5.2.png", baseURL + "Nike5.3.png", baseURL + "Nike5.4.png", baseURL + "Nike5.5.png"]
+            },
+
+            // --- ADIDAS ---
+            {
+                name: "SAMBA OG MEN'S SNEAKER SHOES-FTWR WHITE",
+                price: 2200000,
+                category: "adidas",
+                description: "Sepatu pria klasik, Warna: Putih",
+                image: baseURL + "Adidas1.1.png",
+                gallery: [baseURL + "Adidas1.1.png", baseURL + "Adidas1.2.png", baseURL + "Adidas1.3.png", baseURL + "Adidas1.4.png", baseURL + "Adidas1.5.png"]
+            },
+            {
+                name: "Adidas Samba OG Classic",
+                price: 1400000,
+                category: "adidas",
+                description: "Sneaker indoor-football yang menjadi gaya hidup.",
+                image: baseURL + "Adidas2.1.png",
+                gallery: [baseURL + "Adidas2.1.png", baseURL + "Adidas2.2.png", baseURL + "Adidas2.3.png", baseURL + "Adidas2.4.png", baseURL + "Adidas2.5.png"]
+            },
+            {
+                name: "Adidas Forum Low '84",
+                price: 1300000,
+                category: "adidas",
+                description: "Sepatu basket ikonik dari era 80-an.",
+                image: baseURL + "Adidas3.1.png",
+                gallery: [baseURL + "Adidas3.1.png", baseURL + "Adidas3.2.png", baseURL + "Adidas3.3.png", baseURL + "Adidas3.4.png", baseURL + "Adidas3.5.png"]
+            },
+            {
+                name: "Adidas Duramo SL Running Shoes",
+                price: 850000,
+                category: "adidas",
+                description: "Sepatu lari serbaguna dengan harga terjangkau.",
+                image: baseURL + "Adidas4.1.png",
+                gallery: [baseURL + "Adidas4.1.png", baseURL + "Adidas4.2.png", baseURL + "Adidas4.3.png", baseURL + "Adidas4.4.png", baseURL + "Adidas4.5.png"]
+            },
+            {
+                name: "Adidas Superstar Original",
+                price: 1250000,
+                category: "adidas",
+                description: "Sepatu dengan ciri khas 'shell toe' klasik.",
+                image: baseURL + "Adidas5.1.png",
+                gallery: [baseURL + "Adidas5.1.png", baseURL + "Adidas5.2.png", baseURL + "Adidas5.3.png", baseURL + "Adidas5.4.png", baseURL + "Adidas5.5.png"]
+            },
+
+            // --- HOKA ---
+            {
+                name: "Hoka Clifton 9 Road Running",
+                price: 2600000,
+                category: "hoka",
+                description: "Perpaduan sempurna antara kelembutan dan bobot ringan.",
+                image: baseURL + "Hoka1.1.png",
+                gallery: [baseURL + "Hoka1.1.png", baseURL + "Hoka1.2.png", baseURL + "Hoka1.3.png", baseURL + "Hoka1.4.png", baseURL + "Hoka1.5.png"]
+            },
+            {
+                name: "Hoka Speedgoat 5 Trail Running",
+                price: 2750000,
+                category: "hoka",
+                description: "Sepatu tangguh untuk medan trail yang menantang.",
+                image: baseURL + "Hoka2.1.png",
+                gallery: [baseURL + "Hoka2.1.png", baseURL + "Hoka2.2.png", baseURL + "Hoka2.3.png", baseURL + "Hoka2.4.png", baseURL + "Hoka2.5.png"]
+            },
+            {
+                name: "Hoka Bondi 8 Max Cushion",
+                price: 2899000,
+                category: "hoka",
+                description: "Bantalan paling tebal untuk lari jarak jauh yang lembut.",
+                image: baseURL + "Hoka3.1.png",
+                // PERBAIKAN 1: iHoka3.4.png -> Hoka3.4.png
+                gallery: [baseURL + "Hoka3.1.png", baseURL + "Hoka3.2.png", baseURL + "Hoka3.3.png", baseURL + "Hoka3.4.png", baseURL + "Hoka3.5.png"] 
+            },
+            {
+                name: "Hoka Mach 5 Performance",
+                price: 2300000,
+                category: "hoka",
+                description: "Sepatu cepat untuk tempo run dan balapan.",
+                image: baseURL + "Hoka4.1.png",
+                gallery: [baseURL + "Hoka4.1.png", baseURL + "Hoka4.2.png", baseURL + "Hoka4.3.png", baseURL + "Hoka4.4.png", baseURL + "Hoka4.5.png"]
+            },
+            {
+                name: "Hoka Kawana Gym & Lifestyle",
+                price: 2450000,
+                category: "hoka",
+                description: "Model serbaguna untuk gym dan pemakaian harian.",
+                image: baseURL + "Hoka5.1.png",
+                gallery: [baseURL + "Hoka5.1.png", baseURL + "Hoka5.2.png", baseURL + "Hoka5.3.png", baseURL + "Hoka5.4.png", baseURL + "Hoka5.5.png"]
+            },
+
+            // --- PUMA ---
+            {
+                name: "Puma Suede Classic XXI",
+                price: 999000,
+                category: "puma",
+                description: "Sneaker kulit suede dengan desain retro hip-hop.",
+                image: baseURL + "Puma1.1.png",
+                gallery: [baseURL + "Puma1.1.png", baseURL + "Puma1.2.png", baseURL + "Puma1.3.png", baseURL + "Puma1.4.png", baseURL + "Puma1.5.png"]
+            },
+            {
+                name: "Puma Rider FV Future Vintage",
+                price: 1300000,
+                category: "puma",
+                description: "Gaya vintage dengan teknologi lari modern.",
+                image: baseURL + "Puma2.1.png",
+                gallery: [baseURL + "Puma2.1.png", baseURL + "Puma2.2.png", baseURL + "Puma2.3.png", baseURL + "Puma2.4.png", baseURL + "Puma2.5.png"]
+            },
+            {
+                name: "Puma RS-X Efek Running System",
+                price: 1450000,
+                category: "puma",
+                description: "Sepatu chunky dengan cushioning superior.",
+                image: baseURL + "Puma3.1.png",
+                gallery: [baseURL + "Puma3.1.png", baseURL + "Puma3.2.png", baseURL + "Puma3.3.png", baseURL + "Puma3.4.png", baseURL + "Puma3.5.png"]
+            },
+            {
+                name: "Puma Cali Dream Leather",
+                price: 1100000,
+                category: "puma",
+                description: "Sneaker platform modern dengan sentuhan pantai.",
+                image: baseURL + "Puma4.1.png",
+                gallery: [baseURL + "Puma4.1.png", baseURL + "Puma4.2.png", baseURL + "Puma4.3.png", baseURL + "Puma4.4.png", baseURL + "Puma4.5.png"]
+            },
+            {
+                name: "Puma Deviate Nitro 2",
+                price: 2200000,
+                category: "puma",
+                description: "Sepatu balap karbon-plate untuk kecepatan maksimal.",
+                image: baseURL + "Puma5.1.png",
+                gallery: [baseURL + "Puma5.1.png", baseURL + "Puma5.2.png", baseURL + "Puma5.3.png", baseURL + "Puma5.4.png", baseURL + "Puma5.5.png"]
+            },
+
+            // --- CONVERSE ---
+            {
+                name: "Converse Chuck Taylor All Star High",
+                price: 750000,
+                category: "converse",
+                description: "Sneaker high-top kanvas yang legendaris.",
+                image: baseURL + "Converse1.1.png",
+                gallery: [baseURL + "Converse1.1.png", baseURL + "Converse1.2.png", baseURL + "Converse1.3.png", baseURL + "Converse1.4.png", baseURL + "Converse1.5.png"]
+            },
+            {
+                name: "Converse Chuck 70 Vintage Canvas",
+                price: 1200000,
+                category: "converse",
+                description: "Versi premium dari All Star dengan material lebih tebal.",
+                image: baseURL + "Converse2.1.png",
+                gallery: [baseURL + "Converse2.1.png", baseURL + "Converse2.2.png", baseURL + "Converse2.3.png", baseURL + "Converse2.4.png", baseURL + "Converse2.5.png"]
+            },
+            {
+                name: "Converse One Star Pro Suede",
+                price: 1050000,
+                category: "converse",
+                description: "Model skate klasik dengan logo bintang tunggal.",
+                image: baseURL + "Converse3.1.png",
+                gallery: [baseURL + "Converse3.1.png", baseURL + "Converse3.2.png", baseURL + "Converse3.3.png", baseURL + "Converse3.4.png", baseURL + "Converse3.5.png"]
+            },
+            {
+                name: "Converse Run Star Hike Platform",
+                price: 1699000,
+                category: "converse",
+                description: "Desain chunky modern dengan sol gerigi.",
+                image: baseURL + "Converse4.1.png",
+                gallery: [baseURL + "Converse4.1.png", baseURL + "Converse4.2.png", baseURL + "Converse4.3.png", baseURL + "Converse4.4.png", baseURL + "Converse4.5.png"]
+            },
+            {
+                name: "Converse Star Player 76",
+                price: 899000,
+                category: "converse",
+                description: "Gaya mid-top basket era 70-an yang santai.",
+                image: baseURL + "Converse5.1.png",
+                gallery: [baseURL + "Converse5.1.png", baseURL + "Converse5.2.png", baseURL + "Converse5.3.png", baseURL + "Converse5.4.png", baseURL + "Converse5.5.png"]
+            },
+
+            // --- VANS ---
+            {
+                name: "Vans Old Skool Classic",
+                price: 900000,
+                category: "vans",
+                description: "Ikon skate dengan sidestripe yang khas.",
+                image: baseURL + "Vans1.1.png",
+                gallery: [baseURL + "Vans1.1.png", baseURL + "Vans1.2.png", baseURL + "Vans1.3.png", baseURL + "Vans1.4.png", baseURL + "Vans1.5.png"]
+            },
+            {
+                name: "Vans Sk8-Hi High Top",
+                price: 1050000,
+                category: "vans",
+                description: "Sepatu high-top untuk perlindungan pergelangan kaki.",
+                image: baseURL + "Vans2.1.png",
+                gallery: [baseURL + "Vans2.1.png", baseURL + "Vans2.2.png", baseURL + "Vans2.3.png", baseURL + "Vans2.4.png", baseURL + "Vans2.5.png"]
+            },
+            {
+                name: "Vans Authentic Original Canvas",
+                price: 800000,
+                category: "vans",
+                description: "Desain deck shoe klasik yang sederhana.",
+                image: baseURL + "Vans3.1.png",
+                gallery: [baseURL + "Vans3.1.png", baseURL + "Vans3.2.png", baseURL + "Vans3.3.png", baseURL + "Vans3.4.png", baseURL + "Vans3.5.png"]
+            },
+            {
+                name: "Vans Classic Slip-On Checkerboard",
+                price: 850000,
+                category: "vans",
+                description: "Desain checkerboard yang mudah dipakai dan dilepas.",
+                image: baseURL + "Vans4.1.png",
+                gallery: [baseURL + "Vans4.1.png", baseURL + "Vans4.2.png", baseURL + "Vans4.3.png", baseURL + "Vans4.4.png", baseURL + "Vans4.5.png"]
+            },
+            {
+                name: "Vans UltraRange EXO SE",
+                price: 1350000,
+                category: "vans",
+                description: "Sepatu perjalanan dengan kenyamanan cushioning ULTRACUSH.",
+                image: baseURL + "Vans5.1.png",
+                // PERBAIKAN 2: assets/iVans5.4.png -> baseURL + "Vans5.4.png"
+                gallery: [baseURL + "Vans5.1.png", baseURL + "Vans5.2.png", baseURL + "Vans5.3.png", baseURL + "Vans5.4.png", baseURL + "Vans5.5.png"] 
+            }
+        ];
+
+        async function uploadData() {
+            const btn = document.getElementById('btnMigrate');
+            const status = document.getElementById('status');
+            btn.disabled = true;
+            btn.textContent = "Sedang Memproses...";
+            
+            status.innerText = "Memulai upload...\n";
+
+            let successCount = 0;
+            let errorCount = 0;
+
+            // Loop melalui setiap produk
+            for (let i = 0; i < products.length; i++) {
+                const product = products[i];
+                try {
+                    // Menambahkan ke koleksi 'products'
+                    await db.collection("products").add({
+                        name: product.name,
+                        price: Number(product.price),
+                        category: product.category,
+                        description: product.description,
+                        imageUrl: product.image,
+                        gallery: product.gallery,
+                        createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                    });
+                    
+                    status.innerText += `✅ Berhasil: ${product.name}\n`;
+                    successCount++;
+                } catch (error) {
+                    console.error("Error uploading", product.name, error);
+                    status.innerText += `❌ Gagal: ${product.name} (${error.message})\n`;
+                    errorCount++;
+                }
+            }
+
+            status.innerText += `\n\nSELESAI!\nBerhasil: ${successCount}\nGagal: ${errorCount}`;
+            btn.textContent = "Selesai";
+            alert("Proses migrasi selesai!");
+        }
+    </script>
+</body>
+</html>
