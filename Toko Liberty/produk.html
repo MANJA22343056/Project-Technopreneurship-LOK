@@ -9,7 +9,7 @@
 
     <style>
         /* ==================================== */
-        /* PRODUCT CARD STYLING (PRODUK.html)   */
+        /* STYLING (Sama seperti sebelumnya)    */
         /* ==================================== */
         .product-card {
             transition: transform 0.3s, box-shadow 0.3s;
@@ -43,7 +43,6 @@
             object-fit: contain;
         }
 
-        /* Utility untuk tombol WhatsApp */
         .btn-wa {
             background-color: #25D366;
             color: white;
@@ -54,33 +53,22 @@
             background-color: #1DA851;
         }
 
-        /* ==================================== */
-        /* MODAL QUICK VIEW (PRODUK.html) */
-        /* ==================================== */
-
-        /* Modal Backdrop & Overlay */
+        /* MODAL STYLES */
         #product-modal {
             background-color: rgba(0, 0, 0, 0.8);
             backdrop-filter: blur(5px);
             transition: opacity 0.3s ease-out;
             z-index: 50;
-            /* Z-index tinggi */
         }
 
-        #product-modal.hidden {
-            display: none;
-        }
+        #product-modal.hidden { display: none; }
 
-        /* Container Thumbnail Galeri */
         #modal-thumbnail-gallery {
             max-height: 500px;
-            /* Batasan tinggi untuk galeri samping */
             overflow-y: auto;
             padding-right: 8px;
-            /* Ruang untuk scrollbar */
         }
 
-        /* Item Thumbnail */
         .thumbnail-item {
             cursor: pointer;
             padding: 2px;
@@ -89,21 +77,12 @@
             border: 2px solid transparent;
         }
 
-        .thumbnail-item:hover {
-            border-color: #d1d5db;
-            /* Gray-300 saat hover */
-        }
+        .thumbnail-item:hover { border-color: #d1d5db; }
+        .thumbnail-item.active { border-color: #3b82f6 !important; }
 
-        .thumbnail-item.active {
-            border-color: #3b82f6 !important;
-            /* Biru-500 saat aktif */
-        }
-
-        /* Size Buttons */
         .size-button {
             padding: 8px 16px;
             border: 1px solid #d1d5db;
-            /* gray-300 */
             border-radius: 4px;
             cursor: pointer;
             transition: all 0.2s;
@@ -111,90 +90,32 @@
             font-weight: 500;
         }
 
-        .size-button:hover {
-            border-color: #3b82f6;
-        }
+        .size-button:hover { border-color: #3b82f6; }
+        .size-button.active { border-color: #3b82f6; background-color: #eff6ff; }
 
-        .size-button.active {
-            border-color: #3b82f6;
-            /* Blue-500 */
-            background-color: #eff6ff;
-            /* Blue-50 */
-        }
-
-        .size-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            text-decoration: line-through;
-        }
-
-        /* ==================================== */
-        /* MODAL PANDUAN UKURAN (SIZE GUIDE) */
-        /* ==================================== */
-        #size-guide-modal {
-            z-index: 60;
-            /* Harus lebih tinggi dari #product-modal */
-        }
-
-        #size-guide-modal.hidden {
-            display: none;
-        }
-
-        /* Styling Tabel Panduan Ukuran */
-        .size-table th,
-        .size-table td {
-            padding: 12px;
-            border: 1px solid #e5e7eb;
-            /* gray-200 */
-        }
-
-        .size-table tbody tr:nth-child(even) {
-            background-color: #f9fafb;
-            /* gray-50 untuk baris genap */
-        }
-
-        .size-table {
-            border-collapse: collapse;
-        }
-
-        /* ==================================== */
-        /* TESTIMONY CARD (ABOUT.html)          */
-        /* ==================================== */
-        .testimony-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .testimony-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        /* ==================================== */
-        /* FORM ELEMENTS (KONTAK.html, LOGIN.html) */
-        /* ==================================== */
-        .form-input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-
-        .form-input:focus {
-            border-color: #3b82f6;
-            outline: none;
-            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.5);
+        /* SIZE GUIDE MODAL */
+        #size-guide-modal { z-index: 60; }
+        #size-guide-modal.hidden { display: none; }
+        .size-table th, .size-table td { padding: 12px; border: 1px solid #e5e7eb; }
+        .size-table tbody tr:nth-child(even) { background-color: #f9fafb; }
+        .size-table { border-collapse: collapse; }
+        
+        /* Loading Indicator */
+        #loading-indicator {
+            display: flex;
+            justify-content: center;
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #4b5563;
         }
     </style>
 </head>
 
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
 
 <script>
-    // ▼▼▼ INI ADALAH KODE BARU DARI PROJECT SETTINGS ANDA ▼▼▼
     const firebaseConfig = {
       apiKey: "AIzaSyC-Yy3nBhGrND6ZmgcMZ_sjE-aKN0lkL8o",
       authDomain: "tokolibertyproject.firebaseapp.com",
@@ -204,16 +125,10 @@
       appId: "1:300142124191:web:7deb307397e945070bd6aa",
       measurementId: "G-B41D2CS5GT"
     };
-    // ▲▲▲ SAMPAI DI SINI ▲▲▲
 
-    // Inisialisasi Firebase (Ini tetap sama)
     firebase.initializeApp(firebaseConfig);
-
-    // Siapkan 'pintasan' untuk layanan yang ingin Anda gunakan
     const auth = firebase.auth();
     const db = firebase.firestore();
-
-    console.log("Firebase berhasil terhubung DENGAN KEY BARU!");
 </script>
 
 <body class="min-h-screen">
@@ -221,17 +136,12 @@
     <header class="navbar bg-white shadow-md sticky top-0 z-10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center py-4">
             <img src="assets/logo.png" class="logo rounded" width="80" alt="Logo Perusahaan">
-            <ul class="flex space-x-6">
-                <li><a href="index.html"
-                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
+            <ul class="flex space-x-6 ml-auto" id="nav-links">
+                <li><a href="index.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Home</a></li>
                 <li><a href="produk.html" class="text-blue-600 border-b-2 border-blue-600 font-bold">Produk</a></li>
-                <li><a href="about.html"
-                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Tentang Kami</a>
-                </li>
-                <li><a href="kontak.html"
-                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
-                <li><a href="login.html"
-                        class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Login</a></li>
+                <li><a href="about.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Tentang Kami</a></li>
+                <li><a href="kontak.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Kontak</a></li>
+                <li id="login-nav-item"><a href="login.html" class="text-gray-600 hover:text-blue-600 font-medium transition duration-150">Login</a></li>
             </ul>
         </div>
     </header>
@@ -246,8 +156,7 @@
         <section class="filters bg-white shadow-lg p-6 mb-8 rounded-xl">
             <form id="filter-form" class="flex flex-col md:flex-row gap-4 items-center">
                 <input type="text" id="search-input" name="q" placeholder="Cari nama produk..."
-                    class="w-full md:flex-1 p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150"
-                    aria-label="Cari produk">
+                    class="w-full md:flex-1 p-3 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 transition duration-150">
                 <select id="category-select" name="category"
                     class="w-full md:w-56 p-3 border border-gray-300 rounded-lg bg-white appearance-none focus:ring-blue-500 focus:border-blue-500 transition duration-150">
                     <option value="all">Semua Merek</option>
@@ -258,540 +167,20 @@
                     <option value="converse">Converse</option>
                     <option value="vans">Vans</option>
                 </select>
-                <button type="submit" id="filter-button"
-                    class="btn w-full md:w-32 p-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition duration-150">
-                    Filter
-                </button>
             </form>
         </section>
 
+        <!-- AREA PRODUK DINAMIS (KOSONGKAN DI SINI) -->
+        <div id="loading-indicator">Sedang memuat produk dari Database...</div>
+        
         <section class="products-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
             id="product-grid">
-
-            <article class="product-card" data-category="nike" data-name="Nike 1" data-base-price="2389000"
-                data-gallery="assets/Nike1.1.png,assets/Nike1.2.png,assets/Nike1.3.png,assets/Nike1.4.png,assets/Nike1.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Nike1.1.png" alt="Nike 1">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">NIKE</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">AIR MAX PLUS MEN'S SNEAKERS SHOES-BLACK</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.389.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">pria</p>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Warna:Hitam</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Nike%20Air%20Zoom%20Pegasus%2040%20(Rp%201.200.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="nike" data-name="Nike 2" data-base-price="1250000"
-                data-gallery="assets/Nike2.1.png,assets/Nike2.2.png,assets/Nike2.3.png,assets/Nike2.4.png,assets/Nike2.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Nike2.1.png" alt="Nike 2">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">NIKE</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">AIR MAX 97 MEN'S SNEAKERS SHOES-WHITE</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.250.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">pria</p>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Warna:Putih</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Nike%20Blazer%20Mid%20'77%20Vintage%20(Rp%201.550.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="nike" data-name="Nike 3" data-base-price="1750000"
-                data-gallery="assets/Nike3.1.png,assets/Nike3.2.png,assets/Nike3.3.png,assets/Nike3.4.png,assets/Nike3.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Nike3.1.png" alt="Nike 3">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">NIKE</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">P-6000 MEN'S SNESKERS SHOES - LT KHAKI/PALE
-                        IVORY-THUNDER BLUE</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.750.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">pria</p>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Warna:Kuning</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Nike%20Revolution%206%20FlyEase%20(Rp%20750.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="nike" data-name="Nike 4" data-base-price="1399000"
-                data-gallery="assets/Nike4.1.png,assets/Nike4.2.png,assets/Nike4.3.png,assets/Nike4.4.png,assets/Nike4.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Nike4.1.png" alt="Nike 4">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">NIKE</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Nike P-6000 MEN'S SNESKERS SHOES - PHANTOM</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.399.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">pria</p>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Warna:Putih</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Nike%20Air%20Force%201%20Low%20'07%20(Rp%201.399.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="nike" data-name="Nike 5" data-base-price="2850000"
-                data-gallery="assets/Nike5.1.png,assets/Nike5.2.png,assets/Nike5.3.png,assets/Nike5.4.png,assets/Nike5.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Nike5.1.png" alt="Nike 5">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">NIKE</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">KOBE IX ELITE LOW EM PROTRO MEN'S BASKETBALL
-                        SHOES-WOLF GREY/WHITE</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.850.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">pria</p>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Warna:Abu-abu</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Nike%20Dunk%20Low%20Retro%20(Rp%201.450.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="product-card" data-category="adidas" data-name="Adidas 1" data-base-price="2500000"
-                data-gallery="assets/Adidas1.1.png,assets/Adidas1.2.png,assets/Adidas1.3.png,assets/Adidas1.4.png,assets/Adidas1.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Adidas1.1.png" alt="Adidas 1">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">ADIDAS</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">SAMBA OGMEN'S SNEAKER SHOES-FTWR WHIRE</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.200.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">pria</p>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Warna:Putih</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Adidas%20Ultraboost%2022%20(Rp%202.500.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="adidas" data-name="Adidas 2" data-base-price="1400000"
-                data-gallery="assets/Adidas2.1.png,assets/Adidas2.2.png,assets/Adidas2.3.png,assets/Adidas2.4.png,assets/Adidas2.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Adidas2.1.png" alt="Adidas 2">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">ADIDAS</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Adidas Samba OG Classic</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.400.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sneaker indoor-football yang menjadi gaya
-                        hidup.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Adidas%20Samba%20OG%20Classic%20(Rp%201.400.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="adidas" data-name="Adidas 3" data-base-price="1300000"
-                data-gallery="assets/Adidas3.1.png,assets/Adidas3.2.png,assets/Adidas3.3.png,assets/Adidas3.4.png,assets/Adidas3.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Adidas3.1.png" alt="Adidas 3">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">ADIDAS</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Adidas Forum Low '84</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.300.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu basket ikonik dari era 80-an.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Adidas%20Forum%20Low%20'84%20(Rp%201.300.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="adidas" data-name="Adidas 4" data-base-price="850000"
-                data-gallery="assets/Adidas4.1.png,assets/Adidas4.2.png,assets/Adidas4.3.png,assets/Adidas4.4.png,assets/Adidas4.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Adidas4.1.png" alt="Adidas 4">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">ADIDAS</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Adidas Duramo SL Running Shoes</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 850.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu lari serbaguna dengan harga terjangkau.
-                    </p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Adidas%20Duramo%20SL%20(Rp%20850.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="adidas" data-name="Adidas 5" data-base-price="1250000"
-                data-gallery="assets/Adidas5.1.png,assets/Adidas5.2.png,assets/Adidas5.3.png,assets/Adidas5.4.png,assets/Adidas5.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Adidas5.1.png" alt="Adidas 5">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">ADIDAS</h3>
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Adidas Superstar Original</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.250.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu dengan ciri khas 'shell toe' klasik.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Adidas%20Superstar%20(Rp%201.250.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="product-card" data-category="hoka" data-name="Hoka 1" data-base-price="2600000"
-                data-gallery="assets/Hoka1.1.png,assets/Hoka1.2.png,assets/Hoka1.3.png,assets/Hoka1.4.png,assets/Hoka1.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Hoka1.1.png" alt="Hoka 1">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Hoka Clifton 9 Road Running</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.600.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Perpaduan sempurna antara kelembutan dan bobot
-                        ringan.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Hoka%20Clifton%209%20(Rp%202.600.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="hoka" data-name="Hoka 2" data-base-price="2750000"
-                data-gallery="assets/Hoka2.1.png,assets/Hoka2.2.png,assets/Hoka2.3.png,assets/Hoka2.4.png,assets/Hoka2.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Hoka2.1.png" alt="Hoka 2">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Hoka Speedgoat 5 Trail Running</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.750.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu tangguh untuk medan *trail* yang
-                        menantang.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Hoka%20Speedgoat%205%20(Rp%202.750.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="hoka" data-name="Hoka 3" data-base-price="2899000"
-                data-gallery="assets/Hoka3.1.png,assets/Hoka3.2.png,assets/Hoka3.3.png,assets/iHoka3.4.png,assets/Hoka3.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Hoka3.1.png" alt="Hoka 3">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Hoka Bondi 8 Max Cushion</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.899.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Bantalan paling tebal untuk lari jarak jauh
-                        yang lembut.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Hoka%20Bondi%208%20(Rp%202.899.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="hoka" data-name="Hoka 4" data-base-price="2300000"
-                data-gallery="assets/Hoka4.1.png,assets/Hoka4.2.png,assets/Hoka4.3.png,assets/Hoka4.4.png,assets/Hoka4.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Hoka4.1.png" alt="Hoka 4">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Hoka Mach 5 Performance</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.300.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu cepat untuk *tempo run* dan balapan.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Hoka%20Mach%205%20(Rp%202.300.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="hoka" data-name="Hoka 5" data-base-price="2450000"
-                data-gallery="assets/Hoka5.1.png,assets/Hoka5.2.png,assets/Hoka5.3.png,assets/Hoka5.4.png,assets/Hoka5.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Hoka5.1.png" alt="Hoka 5">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Hoka Kawana Gym & Lifestyle</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.450.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Model serbaguna untuk gym dan pemakaian harian.
-                    </p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Hoka%20Kawana%20(Rp%202.450.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="product-card" data-category="puma" data-name="Puma 1" data-base-price="999000"
-                data-gallery="assets/Puma1.1.png,assets/Puma1.2.png,assets/Puma1.3.png,assets/Puma1.4.png,assets/Puma1.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Puma1.1.png" alt="Puma 1">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Puma Suede Classic XXI</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 999.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sneaker kulit suede dengan desain retro
-                        hip-hop.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Puma%20Suede%20Classic%20XXI%20(Rp%20999.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="puma" data-name="Puma 2" data-base-price="1300000"
-                data-gallery="assets/Puma2.1.png,assets/Puma2.2.png,assets/Puma2.3.png,assets/Puma2.4.png,assets/Puma2.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Puma2.1.png" alt="Puma 2">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Puma Rider FV Future Vintage</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.300.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Gaya *vintage* dengan teknologi lari modern.
-                    </p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Puma%20Rider%20FV%20(Rp%201.300.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="puma" data-name="Puma 3" data-base-price="1450000"
-                data-gallery="assets/Puma3.1.png,assets/Puma3.2.png,assets/Puma3.3.png,assets/Puma3.4.png,assets/Puma3.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Puma3.1.png" alt="Puma 3">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Puma RS-X Efek Running System</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.450.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu *chunky* dengan *cushioning* superior.
-                    </p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Puma%20RS-X%20Efek%20(Rp%201.450.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="puma" data-name="Puma 4" data-base-price="1100000"
-                data-gallery="assets/Puma4.1.png,assets/Puma4.2.png,assets/Puma4.3.png,assets/Puma4.4.png,assets/Puma4.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Puma4.1.png" alt="Puma 4">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Puma Cali Dream Leather</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.100.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sneaker *platform* modern dengan sentuhan
-                        pantai.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Puma%20Cali%20Dream%20(Rp%201.100.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="puma" data-name="Puma 5" data-base-price="2200000"
-                data-gallery="assets/Puma5.1.png,assets/Puma5.2.png,assets/Puma5.3.png,assets/Puma5.4.png,assets/Puma5.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Puma5.1.png" alt="Puma 5">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Puma Deviate Nitro 2</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 2.200.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu balap karbon-plate untuk kecepatan
-                        maksimal.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Puma%20Deviate%20Nitro%202%20(Rp%202.200.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="product-card" data-category="converse" data-name="Converse 1" data-base-price="750000"
-                data-gallery="assets/Converse1.1.png,assets/Converse1.2.png,assets/Converse1.3.png,assets/Converse1.4.png,assets/Converse1.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Converse1.1.png" alt="Converse 1">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Converse Chuck Taylor All Star High</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 750.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sneaker high-top kanvas yang legendaris.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Converse%20Chuck%20Taylor%20High%20(Rp%20750.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="converse" data-name="Converse 2" data-base-price="1200000"
-                data-gallery="assets/Converse2.1.png,assets/Converse2.2.png,assets/Converse2.3.png,assets/Converse2.4.png,assets/Converse2.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Converse2.1.png" alt="Converse 2">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Converse Chuck 70 Vintage Canvas</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.200.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Versi premium dari All Star dengan material
-                        lebih tebal.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Converse%20Chuck%2070%20(Rp%201.200.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="converse" data-name="Converse 3" data-base-price="1050000"
-                data-gallery="assets/Converse3.1.png,assets/Converse3.2.png,assets/Converse3.3.png,assets/Converse3.4.png,assets/Converse3.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Converse3.1.png" alt="Converse 3">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Converse One Star Pro Suede</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.050.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Model skate klasik dengan logo bintang tunggal.
-                    </p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Converse%20One%20Star%20(Rp%201.050.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="converse" data-name="Converse 4" data-base-price="1699000"
-                data-gallery="assets/Converse4.1.png,assets/Converse4.2.png,assets/Converse4.3.png,assets/Converse4.4.png,assets/Converse4.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Converse4.1.png" alt="Converse 4">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Converse Run Star Hike Platform</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.699.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Desain *chunky* modern dengan sol gerigi.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Converse%20Run%20Star%20Hike%20(Rp%201.699.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="converse" data-name="Converse 5" data-base-price="899000"
-                data-gallery="assets/Converse5.1.png,assets/Converse5.2.png,assets/Converse5.3.png,assets/Converse5.4.png,assets/Converse5.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Converse5.1.png" alt="Converse 5">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Converse Star Player 76</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 899.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Gaya mid-top basket era 70-an yang santai.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Converse%20Star%20Player%2076%20(Rp%20899.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-
-            <article class="product-card" data-category="vans" data-name="Vans 1" data-base-price="900000"
-                data-gallery="assets/Vans1.1.png,assets/Vans1.2.png,assets/Vans1.3.png,assets/Vans1.4.png,assets/Vans1.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Vans1.1.png" alt="Vans 1">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Vans Old Skool Classic</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 900.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Ikon skate dengan *sidestripe* yang khas.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Vans%20Old%20Skool%20Classic%20(Rp%20900.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="vans" data-name="Vans 2" data-base-price="1050000"
-                data-gallery="assets/Vans2.1.png,assets/Vans2.2.png,assets/Vans2.3.png,assets/Vans2.4.png,assets/Vans2.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Vans2.1.png" alt="Vans 2">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Vans Sk8-Hi High Top</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.050.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu high-top untuk perlindungan pergelangan
-                        kaki.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Vans%20Sk8-Hi%20(Rp%201.050.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="vans" data-name="Vans 3" data-base-price="800000"
-                data-gallery="assets/Vans3.1.png,assets/Vans3.2.png,assets/Vans3.3.png,assets/Vans3.4.png,assets/Vans3.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Vans3.1.png" alt="Vans 3">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Vans Authentic Original Canvas</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 800.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Desain *deck shoe* klasik yang sederhana.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Vans%20Authentic%20(Rp%20800.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="vans" data-name="Vans 4" data-base-price="850000"
-                data-gallery="assets/Vans4.1.png,assets/Vans4.2.png,assets/Vans4.3.png,assets/Vans4.4.png,assets/Vans4.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Vans4.1.png" alt="Vans 4">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Vans Classic Slip-On Checkerboard</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 850.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Desain *checkerboard* yang mudah dipakai dan
-                        dilepas.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Vans%20Classic%20Slip-On%20(Rp%20850.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-            <article class="product-card" data-category="vans" data-name="Vans 5" data-base-price="1350000"
-                data-gallery="assets/Vans5.1.png,assets/Vans5.2.png,assets/Vans5.3.png,assets/iVans5.4.png,assets/Vans5.5.png">
-                <div class="product-img-container open-modal-trigger">
-                    <img src="assets/Vans5.1.png" alt="Vans 5">
-                </div>
-                <div class="p-4 flex flex-col flex-grow">
-                    <h3 class="text-lg font-bold text-gray-800 mb-1">Vans UltraRange EXO SE</h3>
-                    <div class="price text-xl font-extrabold text-red-600 mb-2">Rp 1.350.000</div>
-                    <p class="desc text-sm text-gray-500 mb-4 flex-grow">Sepatu perjalanan dengan kenyamanan
-                        *cushioning* ULTRACUSH.</p>
-                    <div class="actions flex gap-3 mt-auto">
-                        <a class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md"
-                            href="https://wa.me/6282288187742?text=Pesan%20Vans%20UltraRange%20EXO%20SE%20(Rp%201.350.000)."
-                            target="_blank">Pesan via WhatsApp</a>
-                    </div>
-                </div>
-            </article>
-
+            <!-- Kartu produk akan dimasukkan secara otomatis di sini oleh JavaScript -->
         </section>
 
     </main>
 
+    <!-- MODAL UTAMA -->
     <div id="product-modal"
         class="hidden fixed inset-0 z-50 overflow-y-auto bg-black bg-opacity-75 backdrop-blur-sm p-4 sm:p-8"
         onclick="closeModal(event)">
@@ -801,69 +190,45 @@
 
             <button onclick="document.getElementById('product-modal').classList.add('hidden')"
                 class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 z-10 p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
             <div class="p-6 md:p-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
-
                 <div class="flex space-x-4">
-
-                    <div id="modal-thumbnail-gallery" class="flex flex-col items-center">
-                    </div>
-
+                    <div id="modal-thumbnail-gallery" class="flex flex-col items-center"></div>
                     <div class="relative flex-grow flex items-center justify-center">
-                        <img id="modal-main-image" src="" alt="Foto Utama Produk"
-                            class="max-w-full max-h-[500px] object-contain rounded-lg">
-
-                        <button id="modal-prev-btn"
-                            class="absolute left-0 p-2 text-gray-500 hover:text-gray-800 transition bg-white bg-opacity-70 rounded-full ml-2 shadow-md">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 19l-7-7 7-7"></path>
-                            </svg>
+                        <img id="modal-main-image" src="" alt="Foto Utama Produk" class="max-w-full max-h-[500px] object-contain rounded-lg">
+                        <button id="modal-prev-btn" class="absolute left-0 p-2 text-gray-500 hover:text-gray-800 transition bg-white bg-opacity-70 rounded-full ml-2 shadow-md">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
                         </button>
-                        <button id="modal-next-btn"
-                            class="absolute right-0 p-2 text-gray-500 hover:text-gray-800 transition bg-white bg-opacity-70 rounded-full mr-2 shadow-md">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                                </path>
-                            </svg>
+                        <button id="modal-next-btn" class="absolute right-0 p-2 text-gray-500 hover:text-gray-800 transition bg-white bg-opacity-70 rounded-full mr-2 shadow-md">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                         </button>
                     </div>
                 </div>
 
                 <div class="product-details p-4">
-                    <h1 id="modal-product-title" class="text-3xl font-bold text-gray-900 mb-2">Nama Produk</h1>
-                    <p id="modal-product-desc" class="text-sm text-gray-500 mb-4">Deskripsi singkat produk.</p>
-
+                    <h1 id="modal-product-title" class="text-3xl font-bold text-gray-900 mb-2"></h1>
+                    <p id="modal-product-desc" class="text-sm text-gray-500 mb-4"></p>
                     <div class="price-section mb-6">
-                        <span id="modal-current-price" class="text-4xl font-extrabold text-red-600">Rp. 0</span>
+                        <span id="modal-current-price" class="text-4xl font-extrabold text-red-600"></span>
                     </div>
-
                     <div class="border-t border-gray-200 pt-4 mb-4"></div>
-
+                    
                     <div class="size-section mb-6">
                         <div class="flex justify-between items-center mb-2">
-                            <p class="font-semibold text-gray-700">UKURAN</p>
-                            <a href="#" onclick="openSizeGuide(event)"
-                                class="text-blue-600 text-sm hover:underline">Panduan Ukuran</a>
+                            <p class="font-semibold text-gray-700">UKURAN (Tersedia)</p>
+                            <a href="#" onclick="openSizeGuide(event)" class="text-blue-600 text-sm hover:underline">Panduan Ukuran</a>
                         </div>
                         <div id="modal-size-options-container" class="flex flex-wrap gap-2">
+                            <!-- Ukuran akan di-generate otomatis -->
                         </div>
                     </div>
 
                     <div class="quantity-section mb-8">
                         <p class="font-semibold text-gray-700 mb-2">JUMLAH</p>
                         <select id="modal-quantity" class="p-2 border border-gray-300 rounded-md w-20">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
+                            <option>1</option><option>2</option><option>3</option>
                         </select>
                     </div>
 
@@ -872,176 +237,46 @@
                         BELI SEKARANG / PESAN VIA WHATSAPP
                     </a>
                 </div>
-
             </div>
         </div>
     </div>
 
-    <div id="size-guide-modal" class="hidden fixed inset-0 z-[60] overflow-y-auto bg-black bg-opacity-80 p-4"
-        onclick="closeSizeGuide(event)">
-        <div class="bg-white rounded-xl shadow-2xl max-w-2xl mx-auto my-16 transform transition-all duration-300 relative"
-            onclick="event.stopPropagation()">
-
-            <button onclick="document.getElementById('size-guide-modal').classList.add('hidden')"
-                class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 z-10 p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                    xmlns="http://www.w3.org/2000/svg">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
-                    </path>
-                </svg>
+    <!-- MODAL SIZE GUIDE (SAMA) -->
+    <div id="size-guide-modal" class="hidden fixed inset-0 z-[60] overflow-y-auto bg-black bg-opacity-80 p-4" onclick="closeSizeGuide(event)">
+        <div class="bg-white rounded-xl shadow-2xl max-w-2xl mx-auto my-16 transform transition-all duration-300 relative" onclick="event.stopPropagation()">
+            <button onclick="document.getElementById('size-guide-modal').classList.add('hidden')" class="absolute top-4 right-4 text-gray-500 hover:text-gray-900 z-10 p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
-
             <div class="p-6 md:p-8">
                 <h2 class="text-2xl font-bold text-gray-900 mb-6">Panduan Ukuran</h2>
-
-                <p class="text-sm text-blue-600 mb-4 font-medium"><a href="#fit-guide">Jump to : How to Find Your
-                        Fit</a></p>
-
                 <div class="overflow-x-auto">
                     <table class="size-table w-full text-center border-collapse text-sm">
-                        <thead>
-                            <tr class="bg-gray-100">
-                                <th class="p-3 border border-gray-300">US</th>
-                                <th class="p-3 border border-gray-300">UK</th>
-                                <th class="p-3 border border-gray-300">EUR</th>
-                                <th class="p-3 border border-gray-300">CM</th>
-                            </tr>
-                        </thead>
+                        <thead><tr class="bg-gray-100"><th class="p-3 border border-gray-300">US</th><th class="p-3 border border-gray-300">EUR</th><th class="p-3 border border-gray-300">CM</th></tr></thead>
                         <tbody>
-                            <tr>
-                                <td class="p-3 border border-gray-300">6</td>
-                                <td class="p-3 border border-gray-300">5.5</td>
-                                <td class="p-3 border border-gray-300">38.5</td>
-                                <td class="p-3 border border-gray-300">24</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">6.5</td>
-                                <td class="p-3 border border-gray-300">6</td>
-                                <td class="p-3 border border-gray-300">39</td>
-                                <td class="p-3 border border-gray-300">24.5</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">7</td>
-                                <td class="p-3 border border-gray-300">6</td>
-                                <td class="p-3 border border-gray-300">40</td>
-                                <td class="p-3 border border-gray-300">25</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">7.5</td>
-                                <td class="p-3 border border-gray-300">6.5</td>
-                                <td class="p-3 border border-gray-300">40.5</td>
-                                <td class="p-3 border border-gray-300">25.5</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">8</td>
-                                <td class="p-3 border border-gray-300">7</td>
-                                <td class="p-3 border border-gray-300">41</td>
-                                <td class="p-3 border border-gray-300">26</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">8.5</td>
-                                <td class="p-3 border border-gray-300">7.5</td>
-                                <td class="p-3 border border-gray-300">42</td>
-                                <td class="p-3 border border-gray-300">26.5</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">9</td>
-                                <td class="p-3 border border-gray-300">8</td>
-                                <td class="p-3 border border-gray-300">42.5</td>
-                                <td class="p-3 border border-gray-300">27</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">9.5</td>
-                                <td class="p-3 border border-gray-300">8.5</td>
-                                <td class="p-3 border border-gray-300">43</td>
-                                <td class="p-3 border border-gray-300">27.5</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">10</td>
-                                <td class="p-3 border border-gray-300">9</td>
-                                <td class="p-3 border border-gray-300">44</td>
-                                <td class="p-3 border border-gray-300">28</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">10.5</td>
-                                <td class="p-3 border border-gray-300">9.5</td>
-                                <td class="p-3 border border-gray-300">44.5</td>
-                                <td class="p-3 border border-gray-300">28.5</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 border border-gray-300">11</td>
-                                <td class="p-3 border border-gray-300">10</td>
-                                <td class="p-3 border border-gray-300">45</td>
-                                <td class="p-3 border border-gray-300">29</td>
-                            </tr>
+                            <tr><td>7</td><td>40</td><td>25</td></tr>
+                            <tr><td>8</td><td>41</td><td>26</td></tr>
+                            <tr><td>9</td><td>42.5</td><td>27</td></tr>
+                            <tr><td>10</td><td>44</td><td>28</td></tr>
+                            <tr><td>11</td><td>45</td><td>29</td></tr>
                         </tbody>
                     </table>
                 </div>
-
-                <div id="fit-guide" class="mt-8 pt-4 border-t border-gray-200">
-                    <h3 class="text-xl font-bold text-gray-800 mb-3">Cara Menemukan Ukuran Anda</h3>
-                    <ol class="list-decimal list-inside text-gray-600 space-y-2">
-                        <li>Siapkan alat: Selembar kertas, pensil/pulpen, dan penggaris.</li>
-                        <li>Posisikan kaki: Letakkan kaki Anda di atas kertas sambil mengenakan kaus kaki yang biasa
-                            Anda pakai.</li>
-                        <li>Garis: Tandai ujung jempol kaki dan ujung tumit kaki Anda.</li>
-                        <li>Ukur: Gunakan penggaris untuk mengukur jarak antara dua tanda tersebut (dalam CM).</li>
-                        <li>Cek Tabel: Cocokkan panjang CM Anda dengan kolom CM di tabel di atas untuk menemukan ukuran
-                            sepatu yang tepat (US/EUR).</li>
-                    </ol>
-                </div>
             </div>
         </div>
     </div>
 
-    <script>
-        // --- DATA DUMMY (Menggantikan Database) ---
-        // Update data untuk mencerminkan produk dan kategori baru.
-        const productSizeData = {
-            // NIKE
-            'Nike 1': { price: 2389000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Nike 2': { price: 1250000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Nike 3': { price: 1750000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Nike 4': { price: 1399000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Nike 5': { price: 2850000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            // ADIDAS
-            'Adidas 1': { price: 2500000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Adidas 2': { price: 1400000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Adidas 3': { price: 1300000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Adidas 4': { price: 850000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Adidas 5': { price: 1250000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            // HOKA
-            'Hoka 1': { price: 2600000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Hoka 2': { price: 2750000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Hoka 3': { price: 2899000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Hoka 4': { price: 2300000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Hoka 5': { price: 2450000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            // PUMA
-            'Puma 1': { price: 999000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Puma 2': { price: 1300000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Puma 3': { price: 1450000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Puma 4': { price: 1100000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Puma 5': { price: 2200000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            // CONVERSE
-            'Converse 1': { price: 750000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Converse 2': { price: 1200000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Converse 3': { price: 1050000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Converse 4': { price: 1699000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Converse 5': { price: 899000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            // VANS
-            'Vans 1': { price: 900000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Vans 2': { price: 1050000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-            'Vans 3': { price: 800000, sizes: { 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0, 'US 12': 0 } },
-            'Vans 4': { price: 850000, sizes: { 'US 6': 0, 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0 } },
-            'Vans 5': { price: 1350000, sizes: { 'US 7': 0, 'US 8': 0, 'US 9': 0, 'US 10': 0, 'US 11': 0 } },
-        };
+    <script src="main.js"></script>
 
+    <!-- SCRIPT UTAMA -->
+    <script>
+        // Variabel Global untuk Data Produk
+        let allProducts = [];
         let currentGallery = [];
         let currentImageIndex = 0;
         let currentBasePrice = 0;
         let currentProductName = '';
 
-        // --- FUNGSI FORMATTING & UTILITY ---
+        // Format Rupiah
         const formatRupiah = (number) => {
             return new Intl.NumberFormat('id-ID', {
                 style: 'currency',
@@ -1050,197 +285,198 @@
             }).format(number);
         };
 
-        function cleanProductName(cardElement) {
-            return cardElement.getAttribute('data-name');
+        // 1. MENGAMBIL DATA DARI FIREBASE
+        document.addEventListener('DOMContentLoaded', () => {
+            const productsGrid = document.getElementById('product-grid');
+            const loadingIndicator = document.getElementById('loading-indicator');
+
+            db.collection("products").orderBy("createdAt", "desc").get().then((querySnapshot) => {
+                querySnapshot.forEach((doc) => {
+                    // Gabungkan ID dokumen dengan datanya
+                    const data = doc.data();
+                    data.id = doc.id;
+                    allProducts.push(data);
+                });
+
+                // Sembunyikan loading, Tampilkan Produk
+                loadingIndicator.style.display = 'none';
+                renderProducts(allProducts);
+                
+            }).catch((error) => {
+                console.error("Error fetching products:", error);
+                loadingIndicator.textContent = "Gagal memuat produk. Coba muat ulang.";
+            });
+
+            // Listener untuk Filter dan Search
+            const searchInput = document.getElementById('search-input');
+            const categorySelect = document.getElementById('category-select');
+
+            const filterProducts = () => {
+                const searchTerm = searchInput.value.toLowerCase();
+                const category = categorySelect.value;
+
+                const filtered = allProducts.filter(product => {
+                    const matchName = product.name.toLowerCase().includes(searchTerm);
+                    const matchCat = category === 'all' || product.category === category;
+                    return matchName && matchCat;
+                });
+
+                renderProducts(filtered);
+            };
+
+            searchInput.addEventListener('input', filterProducts);
+            categorySelect.addEventListener('change', filterProducts);
+        });
+
+        // 2. FUNGSI RENDER PRODUK KE HTML
+        function renderProducts(products) {
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = ''; // Bersihkan grid
+
+            if (products.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-gray-500">Tidak ada produk ditemukan.</p>';
+                return;
+            }
+
+            products.forEach(product => {
+                // Siapkan string galeri (dipisahkan koma) untuk data attribute
+                const galleryString = product.gallery ? product.gallery.join(',') : product.imageUrl;
+                
+                // Buat kartu HTML
+                const cardHTML = `
+                    <article class="product-card h-full flex flex-col" 
+                        onclick="openModalFromData(this)"
+                        data-name="${product.name}" 
+                        data-price="${product.price}"
+                        data-desc="${product.description}"
+                        data-gallery="${galleryString}">
+                        
+                        <div class="product-img-container">
+                            <img src="${product.imageUrl}" alt="${product.name}" loading="lazy">
+                        </div>
+                        
+                        <div class="p-4 flex flex-col flex-grow">
+                            <h3 class="text-lg font-bold text-gray-800 mb-1 uppercase">${product.category}</h3>
+                            <h3 class="text-sm font-medium text-gray-600 mb-2 line-clamp-2 h-10">${product.name}</h3>
+                            <div class="price text-xl font-extrabold text-red-600 mb-2">${formatRupiah(product.price)}</div>
+                            
+                            <div class="actions flex gap-3 mt-auto pt-4">
+                                <button class="btn-wa w-full text-sm py-2 px-3 rounded-md font-medium text-center shadow-md">
+                                    Lihat Detail
+                                </button>
+                            </div>
+                        </div>
+                    </article>
+                `;
+                grid.innerHTML += cardHTML;
+            });
         }
 
-        // --- FUNGSI GALERI GAMBAR ---
+        // 3. LOGIKA MODAL (DINAMIS)
+        function openModalFromData(card) {
+            const name = card.getAttribute('data-name');
+            const price = parseFloat(card.getAttribute('data-price'));
+            const desc = card.getAttribute('data-desc');
+            const galleryRaw = card.getAttribute('data-gallery');
+            
+            currentProductName = name;
+            currentBasePrice = price;
+            currentGallery = galleryRaw.split(',');
+            currentImageIndex = 0;
+
+            // Isi konten modal
+            document.getElementById('modal-product-title').textContent = name;
+            document.getElementById('modal-product-desc').textContent = desc || "Deskripsi produk detail.";
+            document.getElementById('modal-current-price').textContent = formatRupiah(price);
+
+            // Render Gambar
+            renderThumbnails();
+            
+            // Render Ukuran (Generic Generator karena data size belum di migrasi)
+            renderGenericSizes();
+
+            // Tampilkan Modal
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
 
         function renderThumbnails() {
             const container = document.getElementById('modal-thumbnail-gallery');
             container.innerHTML = '';
+            
+            // Set gambar utama
+            document.getElementById('modal-main-image').src = currentGallery[0];
 
-            currentGallery.forEach((imgPath, index) => {
+            currentGallery.forEach((imgUrl, index) => {
                 const div = document.createElement('div');
-                div.className = `thumbnail-item ${index === currentImageIndex ? 'active' : ''}`;
-                // Cek apakah path gambar valid, jika tidak, gunakan placeholder
-                const finalImgPath = imgPath && imgPath.includes('assets/') ? imgPath : 'placeholder.jpg';
-                div.innerHTML = `<img src="${finalImgPath}" alt="Thumbnail ${index + 1}" class="w-16 h-16 object-cover rounded">`;
-
-                div.addEventListener('click', () => updateImage(index));
+                div.className = `thumbnail-item ${index === 0 ? 'active' : ''}`;
+                div.innerHTML = `<img src="${imgUrl}" class="w-16 h-16 object-cover rounded">`;
+                div.onclick = () => {
+                    currentImageIndex = index;
+                    document.getElementById('modal-main-image').src = imgUrl;
+                    document.querySelectorAll('.thumbnail-item').forEach(el => el.classList.remove('active'));
+                    div.classList.add('active');
+                };
                 container.appendChild(div);
             });
-            updateImage(currentImageIndex);
         }
 
-        function updateImage(newIndex) {
-            const total = currentGallery.length;
-            if (total === 0) return;
-
-            if (newIndex >= total) {
-                newIndex = 0;
-            } else if (newIndex < 0) {
-                newIndex = total - 1;
-            }
-            currentImageIndex = newIndex;
-            // Cek apakah path gambar valid, jika tidak, gunakan placeholder
-            const finalImgPath = currentGallery[currentImageIndex] && currentGallery[currentImageIndex].includes('assets/') ? currentGallery[currentImageIndex] : 'placeholder.jpg';
-            document.getElementById('modal-main-image').src = finalImgPath;
-
-            document.querySelectorAll('#modal-thumbnail-gallery .thumbnail-item').forEach((thumb, index) => {
-                if (index === currentImageIndex) {
-                    thumb.classList.add('active');
-                } else {
-                    thumb.classList.remove('active');
-                }
-            });
-        }
-
-        // --- FUNGSI HARGA & UKURAN ---
-
-        function renderSizeOptions(productKey) {
-            const data = productSizeData[productKey];
-            if (!data) return;
-
+        function renderGenericSizes() {
             const container = document.getElementById('modal-size-options-container');
             container.innerHTML = '';
-            currentBasePrice = data.price;
-            let defaultSizeSelected = false;
-
-            Object.entries(data.sizes).forEach(([sizeLabel, priceAdj]) => {
+            // Ukuran standar sepatu
+            const sizes = ['US 7', 'US 8', 'US 9', 'US 10', 'US 11'];
+            
+            sizes.forEach((size, index) => {
                 const btn = document.createElement('button');
-                btn.className = 'size-button';
-                btn.textContent = sizeLabel;
-                btn.setAttribute('data-size', sizeLabel);
-                btn.setAttribute('data-price-adj', priceAdj);
-
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('#modal-size-options-container .size-button').forEach(b => {
-                        b.classList.remove('active');
-                    });
+                btn.className = `size-button ${index === 0 ? 'active' : ''}`; // Default pilih pertama
+                btn.textContent = size;
+                btn.onclick = (e) => {
+                    document.querySelectorAll('.size-button').forEach(b => b.classList.remove('active'));
                     e.target.classList.add('active');
-
-                    updatePrice(currentBasePrice, priceAdj, sizeLabel, currentProductName);
-                });
+                    updateWaLink(size);
+                };
                 container.appendChild(btn);
-
-                if (!defaultSizeSelected) {
-                    btn.click();
-                    defaultSizeSelected = true;
-                }
             });
+            updateWaLink(sizes[0]); // Init link WA
         }
 
-        function updatePrice(basePrice, sizeAdjustment, sizeLabel, productName) {
-            const finalPrice = basePrice + sizeAdjustment;
-            document.getElementById('modal-current-price').textContent = formatRupiah(finalPrice);
-
-            // Update link WA
-            const quantity = document.getElementById('modal-quantity').value;
-            const message = `Halo saya mau pesan ${productName}, Ukuran ${sizeLabel}, Jumlah ${quantity} dengan harga ${formatRupiah(finalPrice)}.`;
-            document.getElementById('modal-wa-link').href = `https://wa.me/6282288187742?text=${encodeURIComponent(message)}`;
+        function updateWaLink(size) {
+            const qty = document.getElementById('modal-quantity').value;
+            const message = `Halo, saya ingin memesan: \nNama: ${currentProductName} \nUkuran: ${size} \nJumlah: ${qty} \nHarga: ${formatRupiah(currentBasePrice)}`;
+            const link = `https://wa.me/6282288187742?text=${encodeURIComponent(message)}`;
+            document.getElementById('modal-wa-link').href = link;
         }
 
+        // Navigasi Gambar Modal
+        document.getElementById('modal-prev-btn').addEventListener('click', () => {
+            if(currentImageIndex > 0) {
+                currentImageIndex--;
+                document.querySelectorAll('.thumbnail-item')[currentImageIndex].click();
+            }
+        });
+        document.getElementById('modal-next-btn').addEventListener('click', () => {
+            if(currentImageIndex < currentGallery.length - 1) {
+                currentImageIndex++;
+                document.querySelectorAll('.thumbnail-item')[currentImageIndex].click();
+            }
+        });
 
-        // --- FUNGSI MODAL UTAMA ---
+        // Listener Quantity
+        document.getElementById('modal-quantity').addEventListener('change', () => {
+            const activeSize = document.querySelector('.size-button.active').textContent;
+            updateWaLink(activeSize);
+        });
 
-        function openModal(cardElement) {
-            const title = cardElement.querySelector('h3').textContent;
-            const desc = cardElement.querySelector('.desc').textContent;
-            const galleryString = cardElement.getAttribute('data-gallery').trim();
-            const galleryArray = galleryString.split(',').map(s => s.trim()).filter(s => s.length > 0);
-
-            const productNameLookup = cleanProductName(cardElement);
-
-            currentGallery = galleryArray;
-            currentProductName = title;
-            currentImageIndex = 0;
-
-            document.getElementById('modal-product-title').textContent = title;
-            document.getElementById('modal-product-desc').textContent = desc;
-
-            renderThumbnails();
-            renderSizeOptions(productNameLookup);
-
-            document.getElementById('product-modal').classList.remove('hidden');
-        }
-
-        function closeModal(event) {
-            if (event.target.id === 'product-modal') {
+        function closeModal(e) {
+            if (e.target.id === 'product-modal') {
                 document.getElementById('product-modal').classList.add('hidden');
             }
         }
+        
+        // Size Guide Modal Logic
+        function openSizeGuide(e) { e.preventDefault(); document.getElementById('size-guide-modal').classList.remove('hidden'); }
+        function closeSizeGuide(e) { if (e.target.id === 'size-guide-modal') document.getElementById('size-guide-modal').classList.add('hidden'); }
 
-        // --- FUNGSI MODAL PANDUAN UKURAN ---
-
-        function openSizeGuide(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            document.getElementById('size-guide-modal').classList.remove('hidden');
-        }
-
-        function closeSizeGuide(event) {
-            if (event.target.id === 'size-guide-modal') {
-                document.getElementById('size-guide-modal').classList.add('hidden');
-            }
-        }
-
-
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Logika untuk menampilkan modal saat klik gambar produk
-            document.querySelectorAll('.open-modal-trigger').forEach(element => {
-                element.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    e.stopPropagation();
-
-                    const card = e.target.closest('.product-card');
-                    if (card) {
-                        openModal(card);
-                    }
-                });
-            });
-
-            // 2. Navigasi panah modal
-            document.getElementById('modal-prev-btn').addEventListener('click', () => updateImage(currentImageIndex - 1));
-            document.getElementById('modal-next-btn').addEventListener('click', () => updateImage(currentImageIndex + 1));
-
-            // 3. Update harga jika kuantitas diubah
-            document.getElementById('modal-quantity').addEventListener('change', () => {
-                const activeSizeButton = document.querySelector('#modal-size-options-container .size-button.active');
-                if (activeSizeButton) {
-                    const sizeAdj = parseInt(activeSizeButton.getAttribute('data-price-adj'));
-                    updatePrice(currentBasePrice, sizeAdj, activeSizeButton.getAttribute('data-size'), currentProductName);
-                }
-            });
-
-            // 4. Logika Filter Produk (OPTIONAL - Tambahan fungsionalitas)
-            const filterForm = document.getElementById('filter-form');
-            const searchInput = document.getElementById('search-input');
-            const categorySelect = document.getElementById('category-select');
-            const productCards = document.querySelectorAll('.product-card');
-
-            filterForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const searchTerm = searchInput.value.toLowerCase();
-                const selectedCategory = categorySelect.value;
-
-                productCards.forEach(card => {
-                    const productName = card.getAttribute('data-name').toLowerCase();
-                    const productCategory = card.getAttribute('data-category');
-
-                    const matchesSearch = productName.includes(searchTerm);
-                    const matchesCategory = selectedCategory === 'all' || productCategory === selectedCategory;
-
-                    if (matchesSearch && matchesCategory) {
-                        card.style.display = 'flex';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
     </script>
-
 </body>
-
 </html>
